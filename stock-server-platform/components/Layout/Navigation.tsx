@@ -1,43 +1,73 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+import { BiCategoryAlt } from "react-icons/bi";
+import { GoHome } from "react-icons/go";
+import { GiShoppingCart } from "react-icons/gi";
+import { AiOutlineFileText } from "react-icons/ai";
+import { HiOutlineUsers } from "react-icons/hi2";
+import { CiCircleInfo } from "react-icons/ci";
 
 export default function Navigation() {
+  const pathname = usePathname();
   const navItems = [
-    { label: "دسته بندی محصولات", href: "/categories", icon: "☰" },
-    { label: "صفحه اصلی", href: "/", icon: "🏠" },
-    { label: "فروشگاه", href: "/shop", icon: "🏪" },
-    { label: "وبلاگ", href: "/blog", icon: "📄" },
-    { label: "تماس با ما", href: "/contact", icon: "👥" },
-    { label: "درباره ما", href: "/about", icon: "ℹ️" },
+    { label: "صفحه اصلی", href: "/", icon: <GoHome /> },
+    { label: "فروشگاه", href: "/shop", icon: <GiShoppingCart /> },
+    { label: "وبلاگ", href: "/blog", icon: <AiOutlineFileText /> },
+    { label: "تماس با ما", href: "/contact", icon: <HiOutlineUsers /> },
+    { label: "درباره ما", href: "/about", icon: <CiCircleInfo /> },
   ];
 
   return (
-    <div className="bg-white border-b border-gray-200 z-0 relative">
+    <div className="bg-white border-b rounded-3xl border-gray-200 z-0 relative mx-[60px] md:mx-[80px] lg:mx-[80px] navigation-1080 xl:mx-[80px] navigation-4k -mt-2">
       <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-2.5 sm:py-3 md:py-3.5">
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 sm:gap-3 md:gap-4">
+          <div className="flex items-center justify-between sm:justify-end gap-1 sm:gap-2 md:gap-3 w-full sm:w-auto">
+            <div className="flex items-center font-semibold hover:bg-[#d9d1ee] transition-colors cursor-pointer gap-1 sm:gap-1.5 md:gap-2 bg-[#e9e4f3] text-[#694aae] rounded-3xl px-2 sm:px-2.5 md:px-2.5 lg:px-3 py-2 sm:py-1.5 md:py-2 lg:py-3 shrink-0">
+              <BiCategoryAlt className="text-sm sm:text-sm md:text-base lg:text-lg shrink-0" />
+              <span className="text-[10px] sm:text-[10px] md:text-xs lg:text-sm whitespace-nowrap hidden sm:inline">
+                دسته بندی محصولات
+              </span>
+            </div>
+            <div className="flex items-center justify-end gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 overflow-x-auto scrollbar-hide flex-1 sm:flex-initial">
+              {navItems.map((item, index) => {
+                const isActive = pathname === item.href;
+                return (
+                  <div key={item.href} className="flex items-center">
+                    <Link
+                      href={item.href}
+                      className={`flex items-center gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 px-1 sm:px-1 md:px-1.5 lg:px-2 xl:px-3 2xl:px-4 py-1 sm:py-1 md:py-1.5 lg:py-2 transition-colors font-medium text-[10px] sm:text-[10px] md:text-xs lg:text-sm xl:text-base whitespace-nowrap ${
+                        isActive
+                          ? "text-[#929292]"
+                          : "text-[#585858] hover:text-[#929292]"
+                      }`}
+                    >
+                      <span className="text-sm sm:text-sm md:text-base lg:text-lg shrink-0">
+                        {item.icon}
+                      </span>
+                      <span className="hidden lg:inline">{item.label}</span>
+                      <span className="lg:hidden hidden sm:inline text-[10px] md:text-xs">
+                        {item.label.split(" ")[0]}
+                      </span>
+                    </Link>
+                    {index < navItems.length - 1 && (
+                      <span className="text-[#eeeeee] hidden sm:inline text-[8px] sm:text-[10px] md:text-xs">
+                        |
+                      </span>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
           <Link
             href="/harajestoon"
-            className="bg-pink-500 hover:bg-pink-600 text-white px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-lg font-medium transition-colors text-sm sm:text-base text-center whitespace-nowrap"
+            className="hidden sm:inline-block bg-[#f6cfd4] hover:bg-[#f1b8bf] text-[#d00219] font-bold px-2.5 md:px-3 lg:px-4 xl:px-5 py-2 md:py-2.5 rounded-3xl transition-colors text-xs md:text-sm lg:text-base text-center whitespace-nowrap shrink-0"
           >
             حراجستون
           </Link>
-
-          <div className="flex items-center justify-center sm:justify-end gap-0.5 sm:gap-1 overflow-x-auto scrollbar-hide">
-            {navItems.map((item, index) => (
-              <div key={item.href} className="flex items-center">
-                <Link
-                  href={item.href}
-                  className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 text-gray-700 hover:text-purple-600 transition-colors font-medium text-xs sm:text-sm md:text-base whitespace-nowrap"
-                >
-                  <span className="text-base sm:text-lg">{item.icon}</span>
-                  <span className="hidden md:inline">{item.label}</span>
-                  <span className="md:hidden">{item.label.split(" ")[0]}</span>
-                </Link>
-                {index < navItems.length - 1 && (
-                  <span className="text-gray-300 hidden sm:inline">|</span>
-                )}
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </div>
