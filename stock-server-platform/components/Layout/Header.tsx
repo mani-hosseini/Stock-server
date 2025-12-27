@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import SearchBar from "./SearchBar";
 import { MdOutlineShoppingBag } from "react-icons/md";
 
@@ -26,25 +27,23 @@ export default function Header({
       <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-4 md:py-5">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-3 sm:gap-4">
           <div className="flex items-center justify-between w-full lg:w-auto lg:order-3">
-            <div className="flex items-center gap-2 lg:hidden">
-              <div className="relative w-10 h-10 sm:w-12 sm:h-12 bg-blue-500 rounded-lg flex items-center justify-center">
-                <span className="text-white text-xl sm:text-2xl font-bold">
-                  S
-                </span>
+            <Link href="/" className="flex items-center gap-2 lg:hidden">
+              <div className="relative w-20 h-[28px] sm:w-24 sm:h-[34px] md:w-28 md:h-[40px]">
+                <Image
+                  src="/Images/Logo/logo stock copy 2.png"
+                  alt="استوک سرور - Stock Server"
+                  fill
+                  className="object-contain"
+                  priority
+                />
               </div>
-              <div className="flex flex-col">
-                <span className="text-blue-600 font-bold text-base sm:text-lg">
-                  استوک سرور
-                </span>
-                <span className="text-blue-600 text-xs">STOCK SERVER</span>
-              </div>
-            </div>
+            </Link>
 
             <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
               {!isAuthenticated ? (
                 <Link
                   href="/auth"
-                  className="text-gray-700 hover:text-purple-600 transition-colors font-medium text-xs sm:text-sm md:text-base"
+                  className="text-gray-700 hover:text-[#17e2fe] transition-colors font-medium text-xs sm:text-sm md:text-base"
                 >
                   <span className="hidden sm:inline">ورود / ثبت نام</span>
                   <span className="sm:hidden">ورود</span>
@@ -53,12 +52,12 @@ export default function Header({
                 <>
                   <Link
                     href="/cart"
-                    className="relative text-gray-700 hover:text-purple-600 transition-colors"
+                    className="relative text-gray-700 hover:text-[#17e2fe] transition-colors"
                     aria-label="سبد خرید"
                   >
                     <MdOutlineShoppingBag className="w-5 h-5 sm:w-6 sm:h-6" />
                     {cartCount > 0 && (
-                      <span className="absolute -top-1 -right-1 bg-purple-600 text-white text-[8px] sm:text-[10px] rounded-full w-3 h-3 sm:w-4 sm:h-4 flex items-center justify-center font-medium">
+                      <span className="absolute -top-1 -right-1 bg-[#17e2fe] text-white text-[8px] sm:text-[10px] rounded-full w-3 h-3 sm:w-4 sm:h-4 flex items-center justify-center font-medium">
                         {cartCount > 99 ? "99+" : cartCount}
                       </span>
                     )}
@@ -76,15 +75,18 @@ export default function Header({
           </div>
 
           <div className="hidden lg:flex items-center gap-4 lg:order-1 w-full lg:flex-1">
-            <div className="relative w-14 h-14 bg-blue-500 rounded-lg flex items-center justify-center shrink-0">
-              <span className="text-white text-2xl font-bold">S</span>
-            </div>
-            <div className="flex flex-col shrink-0">
-              <span className="text-blue-600 font-bold text-lg">
-                استوک سرور
-              </span>
-              <span className="text-blue-600 text-xs">STOCK SERVER</span>
-            </div>
+            <Link
+              href="/"
+              className="relative w-[140px] h-[51px] lg:w-[160px] lg:h-[58px] xl:w-[173px] xl:h-[63px] 2xl:w-[200px] 2xl:h-[73px] shrink-0"
+            >
+              <Image
+                src="/Images/Logo/logo stock copy 2.png"
+                alt="استوک سرور - Stock Server"
+                fill
+                className="object-contain"
+                priority
+              />
+            </Link>
             <div className="flex-1 flex justify-center lg:px-6 xl:px-8">
               <SearchBar />
             </div>
