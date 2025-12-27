@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import HeroSection from "@/components/Home/HeroSection/HeroSection";
+import CategoryIcons from "@/components/Home/CategoryIcons/CategoryIcons";
 
 // TODO: جایگزین کنید با API endpoint واقعی
 async function getBannerImage() {
@@ -87,6 +88,7 @@ export default async function Home() {
       />
       <h1 className="sr-only">استوک سرور - فروش سرور و تجهیزات شبکه</h1>
       <HeroSection bannerImage={bannerImage} />
+      <CategoryIcons />
     </main>
   );
 }
