@@ -21,7 +21,7 @@ export default function SearchBar() {
     <div className="flex items-center gap-0 w-full max-w-2xl mx-auto flex-row-reverse">
       <button
         type="button"
-        className="bg-purple-600 hover:bg-purple-700 text-white px-3 sm:px-4 md:px-5 lg:px-6 py-2.5 sm:py-3 md:py-3.5 rounded-l-3xl transition-colors flex items-center justify-center shrink-0"
+        className="bg-[#17e2fe] hover:bg-[#14c8e0] text-white px-3 sm:px-4 md:px-5 lg:px-6 py-2.5 sm:py-3 md:py-3.5 rounded-l-3xl transition-colors flex items-center justify-center shrink-0"
         aria-label="جستجو"
       >
         <FiSearch className="text-lg sm:text-xl md:text-2xl" />
